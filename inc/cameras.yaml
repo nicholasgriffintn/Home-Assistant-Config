@@ -1,0 +1,11 @@
+############################################################
+#
+# Home Assistant Camera Configuration
+#
+############################################################
+
+# Arlo Camera
+camera:
+  - platform: arlo
+    # ffmpeg_arguments: '-pred 1 -q:v 2'
+    name: Arlo Camera

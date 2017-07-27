@@ -1,0 +1,12 @@
+############################################################
+#
+# Home Assistant Media Players
+#
+############################################################
+media_player:
+  - platform: plex
+    entity_namespace: 'plex'
+    scan_interval: 3
+    use_custom_entity_ids: true
+
+  - platform: cast

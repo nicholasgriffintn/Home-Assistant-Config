@@ -1,0 +1,132 @@
+############################################################
+#
+# Home Assistant Main Configuration File
+#
+############################################################
+
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude 
+  elevation: !secret elevation
+  unit_system: metric
+  time_zone: Europe/London
+  customize: !include inc/customise.yaml
+
+http:
+  # base_url: !secret base_url
+  api_password: !secret api_password
+  # server_host: 
+  # trusted_networks: 
+  ip_ban_enabled: True
+  login_attempts_threshold: 3
+    
+history:
+
+updater:
+  reporting: false
+
+frontend:
+
+discovery:
+
+recorder:
+
+sun:
+
+############################################################
+#
+# Components
+#
+############################################################
+
+# Hue
+emulated_hue:
+
+#- platform: plex
+#  name: Plex
+#  host: !secret plex_server_host
+#  port: 32400
+#  username: !secret plex_server_username
+#  password: !secret plex_server_password
+
+# Arlo
+arlo:
+  username: !secret arlo_username
+  password: !secret arlo_password
+
+# Text-to-Speech
+tts:
+  - platform: google
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 300
+
+###########################################################
+#
+# Includes
+#
+############################################################
+
+# Single Files
+
+panels: !include inc/panels.yaml
+sensors: !include inc/sensors.yaml
+# device_tracker: !include includes/device_trackers.yaml
+cameras: !include inc/cameras.yaml
+media_player: !include inc/media_players.yaml
+plex: !include inc/plex.yaml
+# zwave: !include inc/zwave.yaml
+# broadcom: !include inc/broadcom.yaml
+switches: !include inc/switches.yaml
+
+############################################################
+#
+# Home Assistant Default View
+#
+############################################################
+
+group:
+# Views
+  home_view:
+    view: yes
+    icon: mdi:home 
+    entities:
+    - updater.updater
+    - group.media
+    - group.security
+    - group.weather
+    - group.hallway
+    - group.girlsbedroom
+    - group.mumsbedroom
+    - group.nicksbedroom
+# Groups
+  media:
+    name: Media
+    icon: mdi:airplay
+    entities:
+  security:
+    name: Security
+    icon: mdi:lock
+    entities:
+  weather:
+    name: Weather
+    icon: mdi:amazon-clouddrive
+    entities:
+      - sun.sun
+  hallway:
+    name: Hallway
+    icon: mdi:hotel
+    entities:
+  girlsbedroom:
+    name: Girl's Bedroom
+    icon: mdi:hotel
+    entities:
+  mumsbedroom:
+    name: Mum's Bedroom
+    icon: mdi:hotel
+    entities:
+  nicksbedroom:
+    name: Nick's Bedroom
+    icon: mdi:hotel
+    entities:

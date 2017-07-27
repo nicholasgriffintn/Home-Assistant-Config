@@ -1,0 +1,50 @@
+############################################################
+#
+# Home Assistant Default View
+#
+############################################################
+
+group:
+  default_view:
+    view: yes
+    icon: mdi:home 
+    entities:
+    - updater.updater
+    - group.media
+    - group.security
+    - group.weather
+    - group.hallway
+    - group.girlsbedroom
+    - group.mumsbedroom
+    - group.nicksbedroom
+
+  media:
+    name: Media
+    icon: mdi:airplay
+    entities:
+  security:
+    name: Security
+    icon: mdi:lock
+    entities:
+  weather:
+    name: Weather
+    icon: mdi:amazon-clouddrive
+    entities:
+      - sun.sun
+      - sensor.yr_symbol
+  hallway:
+    name: Hallway
+    icon: mdi:hotel
+    entities:
+  girlsbedroom:
+    name: Girl's Bedroom
+    icon: mdi:hotel
+    entities:
+  mumsbedroom:
+    name: Mum's Bedroom
+    icon: mdi:hotel
+    entities:
+  nicksbedroom:
+    name: Nick's Bedroom
+    icon: mdi:hotel
+    entities:
