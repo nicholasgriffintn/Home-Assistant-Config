@@ -4,3 +4,5 @@ secrets.yaml
 **/SSL
 **/deps
 **/tts
+phue.conf
+plex.conf
