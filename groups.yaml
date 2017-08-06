@@ -1,0 +1,203 @@
+home_view:
+  view: true
+  icon: mdi:home
+  entities:
+  - group.nicksbedroom
+  - group.hallway
+  - group.home
+  - group.cameras
+  - group.girlsbedroom
+  - group.mumsbedroom
+  - group.security
+  - group.media
+  - group.weather
+  name: home_view
+light_view:
+  view: true
+  icon: mdi:ceiling-light
+  entities:
+  - group.hallway
+  - group.girlsbedroom
+  - group.mumsbedroom
+  - group.nicksbedroom
+  name: light_view
+settings_view:
+  view: true
+  icon: mdi:settings
+  entities:
+  - group.server
+  - group.scripts
+  - group.light_automations
+  - group.time_automations
+  - group.system_automations
+  - group.scenes
+home:
+  name: Home
+  icon: mdi:home
+  entities:
+  - sensor.time
+  - sensor.date
+  - input_select.house_mode
+  - input_select.presence
+  - sensor.bst
+media:
+  name: Media
+  icon: mdi:airplay
+  entities:
+  - media_player.living_room_tv
+  - media_player.living_room_ue40h6200
+  - media_player.plex_0rpscn7mosocmrazm8sccc5v
+  - media_player.plex_6bc124dc_7af8_4e6a_90b7_05bc87ce3dbd
+  - media_player.ngtvbedroom
+cameras:
+  name: Cameras
+  icon: mdi:file-video
+  entities:
+  - camera.front_outside_camera
+security:
+  name: Security
+  icon: mdi:lock
+  entities:
+  - sensor.last_front_outside_camera
+  - sensor.captured_today_front_outside_camera
+  - sensor.arlo_cameras
+weather:
+  name: Weather
+  icon: mdi:amazon-clouddrive
+  entities:
+  - sensor.weather_minutely_summary
+  - sensor.weather_temperature
+  - sensor.weather_apparent_temperature
+  - sensor.weather_humidity
+  - sensor.weather_precip_intensity
+  - sensor.weather_wind_speed
+  - sensor.weather_daily_high_temperature
+  - sensor.weather_daily_low_temperature
+  - sensor.weather_daily_summary
+  - sun.sun
+hallway:
+  name: Hallway
+  icon: mdi:hotel
+  entities:
+  - light.lightstrip
+  - script.hallway_colorloop
+girlsbedroom:
+  name: Girl's Bedroom
+  icon: mdi:hotel
+  entities:
+  - light.girls
+  - script.girls_bedroom_nightlight
+  - script.girls_bedroom_bright
+mumsbedroom:
+  name: Mum's Bedroom
+  icon: mdi:hotel
+  entities:
+  - light.mums
+nicksbedroom:
+  name: Nick's Bedroom
+  icon: mdi:hotel
+  entities:
+  - light.ceiling_light
+  - script.bedroom_energize
+  - script.bedroom_concentrate
+  - input_select.scene_bedroom
+  - input_slider.bedroom_bright
+  - input_slider.bedroom_temp
+server:
+  name: Server
+  icon: mdi:home
+  entities:
+  - sensor.cpu_use
+  - sensor.disk_use_
+  - sensor.ram_free
+  - sensor.speedtest_download
+  - sensor.speedtest_ping
+  - sensor.speedtest_upload
+iPhone:
+  name: iPhone
+  icon: mdi:phone
+  entities:
+  - sensor.ng_iphone_battery_state
+  - sensor.ng_iphone_battery_level
+  - device_tracker.ng_iphone
+light_bulb_group:
+  name: Light Bulb Group
+  icon: mdi:bulb
+  entities:
+  - light.girls
+  - light.mums
+  - light.ceiling_light
+strip_group:
+  name: Strip Group
+  icon: mdi:bulb
+  entities:
+  - light.lightstrip
+scenes:
+  name: Scenes
+  icon: mdi:format-paint
+  entities:
+  - scene.night_light_room
+  - scene.ready_for_sleep_room
+  - automation.bedroom_adjustment
+  - automation.bedroom_scene_b
+  - automation.bedroom_scene_c
+  - automation.bedroom_scene_d
+  - automation.bedroom_scene_e
+  - automation.bedroom_scene_n
+  - automation.bedroom_scene_ni
+  - automation.bedroom_scene_r
+  - automation.bedroom_scene_re
+  - scene.mums_room_on
+  - scene.mums_room_night
+scripts:
+  name: Scripts
+  icon: mdi:script
+  entities:
+  - script.bedroom_concentrate
+  - script.bedroom_energize
+  - script.girls_bedroom_bright
+  - script.girls_bedroom_nightlight
+  - script.hallway_colorloop
+  - script.evening_on
+  - script.mums_on
+house_automations:
+  name: House Automations
+  icon: mdi:robot
+  entities:
+  - automation.house_mode_automated_evening
+  - automation.house_mode_automated_midday
+  - automation.house_mode_automated_morning
+  - automation.house_mode_automated_night
+light_automations:
+  name: Light Automations
+  icon: mdi:robot
+  entities:
+  - automation.all_light_bulbs_sunset
+  - automation.lights_on_1hr_before_sunset_gmt
+  - automation.lights_on_at_530_bst
+  - automation.mums_lights_on_at_6pm
+  - automation.turn_bedroom_lights_even_lower_at_1100pm
+  - automation.turn_bedroom_lights_lower_at_950pm
+  - automation.turn_bedroom_off_at_1am
+  - automation.turn_girls_bedroom_off_at_10pm
+  - automation.turn_mums_bedroom_off_at_8am
+  - automation.mums_lights_night_at_10pm
+time_automations:
+  name: Time Automations
+  icon: mdi:robot
+  entities:
+  - automation.it_is_bst
+  - automation.it_is_not_bst
+weather_automations:
+  name: Weather Automations
+  icon: mdi:robot
+  entities:
+  - automation.below_freezing_notification
+system_automations:
+  name: System Automations
+  icon: mdi:robot
+  entities:
+  - automation.cpu_use_above_80
+  - automation.ram_getting_low
+  - automation.system_disk_space_90
+  - automation.hass_startup_notification

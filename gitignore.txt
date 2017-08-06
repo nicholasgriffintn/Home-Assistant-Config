@@ -1,0 +1,6 @@
+secrets.yaml
+*.log
+*.db
+**/SSL
+**/deps
+**/tts

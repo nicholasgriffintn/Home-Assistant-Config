@@ -1,0 +1,391 @@
+  # Home Automated
+  - id: house_mode_automated_morning
+    alias: House Mode Automated Morning
+    trigger:
+      platform: time
+      at: '07:30:00'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.house_mode
+          option: Morning
+  - id: house_mode_automated_midday
+    alias: House Mode Automated Midday
+    trigger:
+      platform: time
+      at: '12:00:00'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.house_mode
+          option: Midday
+  - id: house_mode_automated_evening     
+    alias: House Mode Automated Evening
+    trigger:
+      platform: time
+      at: '17:30:00'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.house_mode
+          option: Evening
+  - id: house_mode_automated_night        
+    alias: House Mode Automated Night
+    trigger:
+      platform: time
+      at: '22:00:00'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.house_mode
+          option: Night
+  
+  # Lights Automated GMT vs BST
+  - id: gmt_lights_on
+    alias: Lights on 1hr before sunset GMT
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: sun
+      event: sunset
+      offset: '-01:00:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_select.presence
+          state: 'Home'
+        - condition: state
+          entity_id: sensor.bst
+          state: 'False'
+    action:
+      - service: script.turn_on
+        entity_id: script.evening_on
+      - service: script.turn_on
+        entity_id: script.hallway_colorloop
+      - service: notify.ios_ng_iphone
+        data:
+          message: 'It is 1 hour until sunset so I have switched on the lights for you.'
+  - id: bst_lights_on
+    alias: Lights on at 5:30 BST
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: time
+      at: '17:45:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_select.presence
+          state: 'Home'
+        - condition: state
+          entity_id: sensor.bst
+          state: 'True'
+    action:
+      - service: script.turn_on
+        entity_id: script.evening_on
+      - service: script.turn_on
+        entity_id: script.hallway_colorloop
+      - service: notify.ios_ng_iphone
+        data:
+          message: 'It is 5:30pm so I have switched on the lights for you.'
+  
+  # Adjuster for my bedroom        
+  - id: bedroom_adjustment
+    alias: Bedroom Adjustment
+    trigger:
+     - platform: state
+       entity_id: input_slider.bedroom_bright
+     - platform: state
+       entity_id: input_slider.bedroom_temp
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.ceiling_light
+          brightness: '{{ states.input_slider.bedroom_bright.state | int }}'
+      - service: light.turn_on
+        data_template:
+          entity_id: light.ceiling_light
+          color_temp: '{{ states.input_slider.bedroom_temp.state | int }}'
+  - id: bedroom_scene_b        
+    alias: Bedroom Scene B
+    trigger:
+     - platform: state
+       entity_id: input_select.scene_bedroom
+       to: "Bright"
+    action:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "Bedroom"
+          scene_name: "Bright"
+  - id: bedroom_scene_c      
+    alias: Bedroom Scene C
+    trigger:
+     - platform: state
+       entity_id: input_select.scene_bedroom
+       to: "Concentrate"
+    action:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "Bedroom"
+          scene_name: "Concentrate"
+  - id: bedroom_scene_e        
+    alias: Bedroom Scene E
+    trigger:
+     - platform: state
+       entity_id: input_select.scene_bedroom
+       to: "Energize"
+    action:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "Bedroom"
+          scene_name: "Energize"
+  - id: bedroom_scene_n
+    alias: Bedroom Scene N
+    trigger:
+     - platform: state
+       entity_id: input_select.scene_bedroom
+       to: "Normal"
+    action:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "Bedroom"
+          scene_name: "Normal"
+  - id: bedroom_scene_d
+    alias: Bedroom Scene D
+    trigger:
+     - platform: state
+       entity_id: input_select.scene_bedroom
+       to: "Dimmed"
+    action:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "Bedroom"
+          scene_name: "Dimmed"
+  - id: bedroom_scene_r
+    alias: Bedroom Scene R
+    trigger:
+     - platform: state
+       entity_id: input_select.scene_bedroom
+       to: "Relax"
+    action:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "Bedroom"
+          scene_name: "Relax"
+  - id: bedroom_scene_re
+    alias: Bedroom Scene Re
+    trigger:
+     - platform: state
+       entity_id: input_select.scene_bedroom
+       to: "Read"
+    action:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "Bedroom"
+          scene_name: "Read"
+  - id: bedroom_scene_ni
+    alias: Bedroom Scene Ni
+    trigger:
+     - platform: state
+       entity_id: input_select.scene_bedroom
+       to: "Nightlight"
+    action:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "Bedroom"
+          scene_name: "Nightlight"
+
+  # Bedroom Lights Automated   
+  - id: bedroom_lower 
+    alias: Turn Bedroom Lights Lower at 9:50PM
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: time
+      at: '21:50:00'
+    condition:
+      - condition: state
+        entity_id: input_select.presence
+        state: 'Home'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.night_light_room
+        data:
+          transition: 900
+      - service: notify.ios_ng_iphone
+        data:
+          message: 'Turning bedroom light down.'
+  - id: bedroom_even_lower
+    alias: Turn Bedroom Lights Even Lower at 11:00PM
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: time
+      at: '23:00:00'
+    condition:
+      - condition: state
+        entity_id: input_select.presence
+        state: 'Home'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.ready_for_sleep_room
+        data:
+          transition: 450
+      - service: notify.ios_ng_iphone
+        data:
+          message: 'Getting the Bedroom ready for sleep.'
+  - id: bedroom_off        
+    alias: Turn Bedroom off at 1am
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: time
+      at: '01:00:00' 
+    action:
+      - service: light.turn_off
+        entity_id: light.ceiling_light
+        
+  # Girls Bedroom Automated
+  - id: girls_bedroom_off
+    alias: Turn Girls Bedroom off at 10pm
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: time
+      at: '22:00:00'
+    action:
+      - service: light.turn_off
+        entity_id: light.girls
+
+  # Mums Bedroom Automated
+  - id: mums_bedroom_on
+    alias: Mums Lights on at 6PM
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: time
+      at: '17:45:00'
+    condition:
+      - condition: state
+        entity_id: input_select.presence
+        state: 'Home'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.mums_room_on
+      - service: notify.ios_ng_iphone
+        data:
+          message: 'Mums light is on.'
+  - id: mums_light_night
+    alias: Mums Lights night at 10PM
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: time
+      at: '22:00:00'
+    condition:
+      - condition: state
+        entity_id: input_select.presence
+        state: 'Home'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.mums_room_night
+        data:
+          transition: 120
+      - service: notify.ios_ng_iphone
+        data:
+          message: 'Mums light is now dark.'
+  - id:  mums_bedroom_off
+    alias: Turn Mums Bedroom off at 8am
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: time
+      at: '8:00:00' 
+    action:
+      - service: light.turn_off
+        entity_id: light.mums
+
+  # Weather Automation
+  - id: below_freezing_notify
+    alias: Below Freezing Notification
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: sun
+      event: sunset
+      offset: '-00:15:00'
+    condition:
+      condition: numeric_state
+      entity_id: sensor.dark_sky_temperature 
+      below: '3'
+    action:
+      service: notify.ios_ng_iphone
+      data:
+        message: 'The outside temperature is currently {{ states.sensor.dark_sky_temperature.state }}'
+  
+  #System Automation
+  - id: hass_startup_notify
+    alias: HASS Startup Notification
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      - service: notify.ios_ng_iphone
+        data:
+          message: 'Home Assistant started'
+  - id: disk_space_notify        
+    alias: System Disk Space 90%
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.disk_use_
+      above: 89
+    action:
+      service: notify.ios_ng_iphone
+      data:
+        message: 'Raspberry Pi Server disk usage is at {{ states.sensor.disk_use_.state }}%'
+  - id: cpu_use_notify    
+    alias: CPU use above 80%
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.cpu_use
+      above: 79
+    action:
+      service: notify.ios_ng_iphone
+      data:
+        message: 'Raspberry Pi Server cpu usage is at {{ states.sensor.disk_use_.state }}%'
+  - id: ram_use_notify    
+    alias: RAM getting low
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.ram_free
+      below: 200
+    action:
+      service: notify.ios_ng_iphone
+      data:
+        message: 'Raspberry Pi Server free RAM is at {{ states.sensor.disk_use_.state }}%'
+
+  # BST automation
+  - id: bst_notify
+    alias: It is BST
+    trigger:
+      platform: state
+      entity_id: sensor.bst
+      from: 'off'
+      to: 'on'
+    action:
+      service: notify.ios_ng_iphone
+      data:
+        message: 'It is British Summer Time!'
+  - id: not_bst_notify        
+    alias: It is not BST
+    trigger:
+      platform: state
+      entity_id: sensor.bst
+      from: 'on'
+      to: 'off'
+    action:
+      service: notify.ios_ng_iphone
+      data:
+        message: 'It is no longer British Summer Time!'

@@ -1,0 +1,71 @@
+############################################################
+#
+# Home Assistant Sensors Configuration
+#
+############################################################
+  # Time Date
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+  # Time Zone
+  - platform: template
+    sensors:
+      bst:
+        value_template: '{{ now() < utcnow() }}'
+  # Arlo Sensor
+  - platform: arlo
+    name: Arlo
+    monitored_conditions:
+      - captured_today
+      - last_capture
+      - total_cameras
+  # Speed Test
+  - platform: speedtest
+    minute: 30
+    hour:
+      - 0
+      - 6
+      - 12
+      - 18
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+  # System Monitor
+  - platform: systemmonitor
+    resources:
+      - type: processor_use
+      - type: disk_use_percent
+        arg: /
+      - type: memory_free
+  # Dark Sky
+  - platform: darksky
+    name: weather
+    api_key: df4c8aa3f5f2ed501ed873bc57098a26
+    monitored_conditions:
+      #- summary
+      #- icon
+      #- nearest_storm_distance
+      #- nearest_storm_bearing
+      #- precip_type
+      - precip_intensity
+      #- precip_probability
+      - temperature
+      - apparent_temperature
+      #- dew_point
+      - wind_speed
+      #- wind_bearing
+      #- cloud_cover
+      - humidity
+      #- pressure
+      #- visibility
+      #- ozone
+      - minutely_summary
+      #- hourly_summary
+      - daily_summary
+      - temperature_max
+      - temperature_min
+      #- apparent_temperature_max
+      #- apparent_temperature_min
+      #- precip_intensity_max

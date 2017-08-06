@@ -1,0 +1,31 @@
+############################################################
+#
+# Home Assistant Scenes Configuration
+#
+############################################################
+  
+  - name: night light room
+    entities:
+      light.ceiling_light:
+        state: on
+        brightness: 78
+        color_temp: 439
+        
+  - name: ready for sleep room
+    entities:
+      light.ceiling_light:
+        state: on
+        brightness: 22
+        color_temp: 439
+
+  - name: mums room on
+    entities:
+      light.mums:
+        state: on
+        brightness: 142
+        
+  - name: mums room night
+    entities:
+      light.mums:
+        state: on
+        brightness: 18

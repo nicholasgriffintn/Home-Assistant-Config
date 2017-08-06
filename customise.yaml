@@ -1,0 +1,82 @@
+  sensor.captured_today_front_outside_camera:
+    friendly_name: Captured Today
+  sensor.last_front_outside_camera:
+    friendly_name: Last Capture
+  media_player.living_room_ue40h6200:
+    friendly_name: Living Room TV
+  
+  sensor.speedtest_download:
+    friendly_name: Download
+  sensor.speedtest_ping:
+    friendly_name: Ping
+  sensor.speedtest_upload:
+    friendly_name: Upload
+    
+  group.light_bulb_group:
+    hidden: true
+  group.strip_group:
+    hidden: true
+  
+  light.bedroom:
+    hidden: true
+  light.ceiling_light:
+    friendly_name: Bedroom Ceiling Light
+    icon: mdi:ceiling-light
+  light.custom_group_for_group:
+    hidden: true
+  light.girls:
+    friendly_name: Grils Ceiling Light
+  light.girls_bedroom:
+    hidden: true
+  light.girls_2:
+    hidden: true
+  light.mums_2:
+    hidden: true
+  light.mums:
+    friendly_name: Mum's Light
+  light.hallway:
+    hidden: true
+  light.lightstrip:
+    friendly_name: Hallway Lightstrip
+  light.mums_bedroom:
+    hidden: true
+
+  script.bedroom_concentrate:
+    friendly_name: Trigger Concentrate
+    icon: mdi:ceiling-light
+  script.bedroom_energize:
+    friendly_name: Trigger Energize
+    icon: mdi:ceiling-light
+  script.girls_bedroom_bright:
+    friendly_name: Trigger Bright
+    icon: mdi:ceiling-light
+  script.girls_bedroom_nightlight:
+    friendly_name: Trigger Nightlight
+    icon: mdi:theme-light-dark
+  script.hallway_colorloop:
+    friendly_name: Trigger Colourloop
+    icon: mdi:lightbulb-on
+    
+  sensor.weather_temperature:
+    friendly_name: Temperature
+  sensor.weather_apparent_temperature:
+    friendly_name: It Feels Like
+  sensor.weather_daily_high_temperature:
+    friendly_name: Max Temperature
+  sensor.weather_daily_low_temperature:
+    friendly_name: Min Temperature
+  sensor.weather_daily_summary:
+    friendly_name: Weekly Forecast
+  sensor.weather_humidity:
+    friendly_name: Humidity
+  sensor.weather_minutely_summary:
+    friendly_name: Hourly Forecast
+  sensor.weather_precip_intensity:
+    friendly_name: Rain Amount
+  sensor.weather_wind_speed:
+    friendly_name: Wind Speed
+
+  sensor.bst:
+    friendly_name: Is it BST?  
+  
+  
