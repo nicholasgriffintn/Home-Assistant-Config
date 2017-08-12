@@ -3,6 +3,7 @@
 # Home Assistant Sensors Configuration
 #
 ############################################################
+
   # Time Date
   - platform: time_date
     display_options:

@@ -1,0 +1,9 @@
+############################################################
+#
+# Home Assistant Switches Configuration
+#
+############################################################
+
+  - platform: tplink
+    host: 10.0.0.23
+    name: Landing Light

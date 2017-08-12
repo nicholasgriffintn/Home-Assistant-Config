@@ -1,3 +1,9 @@
+############################################################
+#
+# Home Assistant Automation Configuration
+#
+############################################################
+
   # Home Automated
   - id: house_mode_automated_morning
     alias: House Mode Automated Morning

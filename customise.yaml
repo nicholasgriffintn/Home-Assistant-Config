@@ -1,3 +1,9 @@
+  ############################################################
+#
+# Home Assistant Customise
+#
+############################################################
+
   sensor.captured_today_front_outside_camera:
     friendly_name: Captured Today
   sensor.last_front_outside_camera:

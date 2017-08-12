@@ -1,3 +1,9 @@
+############################################################
+#
+# Home Assistant Configuration
+#
+############################################################
+
 homeassistant:
   name: Home
   latitude: !secret latitude
@@ -66,11 +72,6 @@ media_player:
 arlo:
   username: !secret arlo_username
   password: !secret arlo_password
-
-camera:
-  - platform: arlo
-    # ffmpeg_arguments: '-pred 1 -q:v 2'
-    name: Arlo Camera
 
 light:
   - platform: hue
@@ -156,12 +157,12 @@ input_slider:
     max: 500
     step: 10
     
-#################################################################
-## Includes
-#################################################################
+# Includes
 
 group: !include groups.yaml
 automation: !include automations.yaml
 sensor: !include sensors.yaml
 scene: !include scenes.yaml
 script: !include scripts.yaml
+camera: !include cameras.yaml
+switch: !include switches.yaml
