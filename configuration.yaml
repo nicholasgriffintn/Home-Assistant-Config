@@ -112,50 +112,6 @@ device_tracker:
      - 192.168.1.19
      
 ios:
-
-input_select:
-  house_mode:
-    name: House mode
-    options:
-      - Morning
-      - Midday
-      - Evening
-      - Night
-    icon: mdi:crosshairs-gps
-  presence:
-    name: Presence
-    options:
-      - Home
-      - Away
-    initial: Home
-    icon: mdi:home-modern
-  scene_bedroom:
-    name: Scene
-    options:
-      - Normal
-      - Bright
-      - Concentrate
-      - Energize
-      - Dimmed
-      - Relax
-      - Read
-      - Nightlight
-    icon: mdi:format-paint
-    
-input_slider:
-  bedroom_bright:
-    name: Brightness
-    initial: 184
-    min: 0
-    max: 254
-    step: 10
-    icon: mdi:white-balance-sunny
-  bedroom_temp:
-    name: Temperature
-    initial: 300
-    min: 154
-    max: 500
-    step: 10
     
 # Includes
 
@@ -166,3 +122,5 @@ scene: !include scenes.yaml
 script: !include scripts.yaml
 camera: !include cameras.yaml
 switch: !include switches.yaml
+input_select: !include input_selects.yaml
+input_slider: !include input_sliders.yaml

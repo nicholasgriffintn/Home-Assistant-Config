@@ -1,0 +1,33 @@
+############################################################
+#
+# Home Assistant Input Select Configuration
+#
+############################################################
+
+  bedroom_bright:
+    name: Brightness
+    initial: 184
+    min: 0
+    max: 254
+    step: 10
+    icon: mdi:white-balance-sunny
+  bedroom_temp:
+    name: Temperature
+    initial: 300
+    min: 154
+    max: 500
+    step: 10
+  girls_bedroom_bright:
+    name: Brightness
+    initial: 184
+    min: 0
+    max: 254
+    step: 10
+    icon: mdi:white-balance-sunny
+  mums_bedroom_bright:
+    name: Brightness
+    initial: 184
+    min: 0
+    max: 254
+    step: 10
+    icon: mdi:white-balance-sunny

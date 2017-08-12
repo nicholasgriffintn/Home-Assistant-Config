@@ -1,0 +1,47 @@
+############################################################
+#
+# Home Assistant Input Select Configuration
+#
+############################################################
+
+  house_mode:
+    name: House mode
+    options:
+      - Morning
+      - Midday
+      - Evening
+      - Night
+    icon: mdi:crosshairs-gps
+  presence:
+    name: Presence
+    options:
+      - Home
+      - Away
+    initial: Home
+    icon: mdi:home-modern
+  scene_bedroom:
+    name: Scene
+    options:
+      - Normal
+      - Bright
+      - Concentrate
+      - Energize
+      - Dimmed
+      - Relax
+      - Read
+      - Nightlight
+    icon: mdi:format-paint
+  scene_girls_bedroom:
+    name: Scene
+    options:
+      - Normal
+      - Bright
+      - Nightlight
+    icon: mdi:format-paint
+  scene_mums_bedroom:
+    name: Scene
+    options:
+      - Normal
+      - Night
+      - NightM
+    icon: mdi:format-paint

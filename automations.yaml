@@ -253,6 +253,40 @@
       - service: light.turn_off
         entity_id: light.ceiling_light
         
+  # Adjuster for Girls Bedroom
+  - id: girls_bedroom_adjustment
+    alias: Bedroom Adjustment
+    trigger:
+     - platform: state
+       entity_id: input_slider.girls_bedroom_bright
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.girls
+          brightness: '{{ states.input_slider.girls_bedroom_bright.state | int }}'
+  - id: girls_bedroom_scene_b        
+    alias: Bedroom Scene B
+    trigger:
+     - platform: state
+       entity_id: input_select.scene_girls_bedroom
+       to: "Bright"
+    action:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "girls"
+          scene_name: "Bright"
+  - id: girls_bedroom_scene_ni
+    alias: Bedroom Scene Ni
+    trigger:
+     - platform: state
+       entity_id: input_select.scene_girls_bedroom
+       to: "Nightlight"
+    action:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "girls"
+          scene_name: "Nightlight"
+
   # Girls Bedroom Automated
   - id: girls_bedroom_off
     alias: Turn Girls Bedroom off at 10pm
@@ -264,6 +298,40 @@
     action:
       - service: light.turn_off
         entity_id: light.girls
+
+  # Adjuster for Mums Bedroom
+  - id: mums_bedroom_adjustment
+    alias: Bedroom Adjustment
+    trigger:
+     - platform: state
+       entity_id: input_slider.mums_bedroom_bright
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.mums
+          brightness: '{{ states.input_slider.mums_bedroom_bright.state | int }}'
+  - id: mums_bedroom_scene_b        
+    alias: Bedroom Scene B
+    trigger:
+     - platform: state
+       entity_id: input_select.scene_mums_bedroom
+       to: "Night"
+    action:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "mums"
+          scene_name: "Night"
+  - id: mums_bedroom_scene_ni
+    alias: Bedroom Scene Ni
+    trigger:
+     - platform: state
+       entity_id: input_select.scene_mums_bedroom
+       to: "NightM"
+    action:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "mums"
+          scene_name: "NightM"
 
   # Mums Bedroom Automated
   - id: mums_bedroom_on
