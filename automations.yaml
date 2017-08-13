@@ -273,7 +273,7 @@
     action:
       - service: light.hue_activate_scene
         data:
-          group_name: "girls"
+          group_name: "Girls"
           scene_name: "Bright"
   - id: girls_bedroom_scene_ni
     alias: Bedroom Scene Ni
@@ -284,7 +284,7 @@
     action:
       - service: light.hue_activate_scene
         data:
-          group_name: "girls"
+          group_name: "Girls"
           scene_name: "Nightlight"
 
   # Girls Bedroom Automated
@@ -317,10 +317,8 @@
        entity_id: input_select.scene_mums_bedroom
        to: "Night"
     action:
-      - service: light.hue_activate_scene
-        data:
-          group_name: "mums"
-          scene_name: "Night"
+      - service: scene.turn_on
+        entity_id: scene.mums_room_on
   - id: mums_bedroom_scene_ni
     alias: Bedroom Scene Ni
     trigger:
@@ -328,10 +326,10 @@
        entity_id: input_select.scene_mums_bedroom
        to: "NightM"
     action:
-      - service: light.hue_activate_scene
+      - service: scene.turn_on
+        entity_id: scene.mums_room_night
         data:
-          group_name: "mums"
-          scene_name: "NightM"
+          transition: 120
 
   # Mums Bedroom Automated
   - id: mums_bedroom_on

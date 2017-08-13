@@ -87,18 +87,21 @@ hallway:
   entities:
   - light.lightstrip
   - script.hallway_colorloop
+  - switch.landing_light
 girlsbedroom:
   name: Girl's Bedroom
   icon: mdi:hotel
   entities:
   - light.girls
-  - script.girls_bedroom_nightlight
-  - script.girls_bedroom_bright
+  - input_select.scene_girls_bedroom
+  - input_slider.girls_bedroom_bright
 mumsbedroom:
   name: Mum's Bedroom
   icon: mdi:hotel
   entities:
   - light.mums
+  - input_select.scene_mums_bedroom
+  - input_slider.mums_bedroom_bright
 nicksbedroom:
   name: Nick's Bedroom
   icon: mdi:hotel
@@ -145,12 +148,18 @@ scenes:
   - scene.night_light_room
   - scene.ready_for_sleep_room
   - automation.bedroom_adjustment
+  - automation.bedroom_adjustment_2
+  - automation.bedroom_adjustment_3
   - automation.bedroom_scene_b
+  - automation.bedroom_scene_b_2
+  - automation.bedroom_scene_b_3
   - automation.bedroom_scene_c
   - automation.bedroom_scene_d
   - automation.bedroom_scene_e
   - automation.bedroom_scene_n
   - automation.bedroom_scene_ni
+  - automation.bedroom_scene_ni_2
+  - automation.bedroom_scene_ni_3
   - automation.bedroom_scene_r
   - automation.bedroom_scene_re
   - scene.mums_room_on
