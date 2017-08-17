@@ -57,28 +57,17 @@ emulated_hue:
 
 media_player:
   - platform: plex
-    host: 10.0.0.20
-    port: 32400
     entity_namespace: 'plex'
+    include_non_clients: true
     scan_interval: 5
-    show_all_controls: truw
+    show_all_controls: true
     use_custom_entity_ids: true
     use_episode_art: true
   - platform: cast
   - platform: samsungtv
-    host: 10.1.2.33
-    port: 8001
+    host: 192.168.0.19
     name: Living Room TV
-    scan_interval: 60
     mac: BC:14:85:A3:E4:26
-
-mqtt:
-  broker: !secret mqtt_server
-  port: !secret mqtt_port
-  username: !secret mqtt_user
-  password: !secret mqtt_pass
-  client_id: home-assistant-mqtt
-  keepalive: 60
 
 arlo:
   username: !secret arlo_username
@@ -88,7 +77,6 @@ light:
   - platform: hue
     host: 10.0.0.3
     allow_unreachable: true
-    allow_in_emulated_hue: false
     
 tts:
   - platform: google
@@ -101,6 +89,14 @@ panel_iframe:
     title: 'Router'
     icon: mdi:router-wireless
     url: 'http://10.0.0.1'
+    
+mqtt:
+  broker: m21.cloudmqtt.com
+  port: 14210
+  username: !secret mqtt_user
+  password: !secret mqtt_pass
+  client_id: home-assistant-mqtt
+  keepalive: 60
 
 device_tracker:
   - platform: netgear
