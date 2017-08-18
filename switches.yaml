@@ -7,3 +7,20 @@
   - platform: tplink
     host: 10.0.0.14
     name: Outside Light
+  - platform: broadlink
+    host: 10.0.0.19
+    mac: 'B4:43:0D:FC:1B:FE'
+    friendly_name: The Remote
+    switches:
+      tv_samsung_bedroom:
+        friendly_name: "Bedroom TV"
+        command_on:
+          'JgCMAJaSFDUVNRM2FBEUERMRFRAUERQ1FDYSNxITExITEhETEhMSExI3ExITEhITEhITEhMSEzYTEhM3EjcTNRQ3EzYTNxMABfyUlBM2EzcTNhMSExITEhISExISOBI3EzYTEhITExISEhMSExISNxMSEhMSExQQExISExM3EhISOBI3EzcSNxM2EzcTAA0FAAAAAAAAAAAAAAAA'
+        command_off:
+          'JgCMAJaSFDUVNRM2FBEUERMRFRAUERQ1FDYSNxITExITEhETEhMSExI3ExITEhITEhITEhMSEzYTEhM3EjcTNRQ3EzYTNxMABfyUlBM2EzcTNhMSExITEhISExISOBI3EzYTEhITExISEhMSExISNxMSEhMSExQQExISExM3EhISOBI3EzcSNxM2EzcTAA0FAAAAAAAAAAAAAAAA'
+      dyson_fan:
+        friendly_name: "Dyson Fan"
+        command_on:
+          'JgBIAEsWGxcaFRssGiwaFxYYGxUbFhsXFxkaFhsVGxUbKxorGwAMrUkZGBkXGRgtGS0ZGBgYGBgXGhgZFxkYGRcZFxkXLRksGQANBQ=='
+        command_off:
+          'JgBIAEsWGxcaFRssGiwaFxYYGxUbFhsXFxkaFhsVGxUbKxorGwAMrUkZGBkXGRgtGS0ZGBgYGBgXGhgZFxkYGRcZFxkXLRksGQANBQ=='

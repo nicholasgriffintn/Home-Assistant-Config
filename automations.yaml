@@ -461,3 +461,63 @@
       service: notify.ios_ng_iphone
       data:
         message: 'It is no longer British Summer Time!'
+
+  # Lights Outside Automated GMT vs BST
+  - id: gmt_lights_on_outside
+    alias: Outside lights on at 8PM BST
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: time
+      at: '20:15:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_select.presence
+          state: 'Home'
+        - condition: state
+          entity_id: sensor.bst
+          state: 'True'
+    action:
+      - service: switch.turn_on
+        entity_id: switch.outside_light
+      - service: notify.ios_ng_iphone
+        data:
+          message: 'I have turned the outside lights on.'
+  - id: bst_lights_on_outside
+    alias: Outside lights on at 5:30 BST
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: time
+      at: '17:45:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_select.presence
+          state: 'Home'
+        - condition: state
+          entity_id: sensor.bst
+          state: 'False'
+    action:
+      - service: switch.turn_on
+        entity_id: switch.outside_light
+      - service: notify.ios_ng_iphone
+        data:
+          message: 'I have turned the outside lights on.'
+  # Lights Outside Off
+  - id:  lights_outside_off
+    alias: Turn Outside Lights Off at 10pm
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: time
+      at: '22:00:00' 
+    action:
+      - service: switch.turn_off
+        entity_id: switch.outside_light
+      - service: notify.ios_ng_iphone
+        data:
+          message: 'I have turned the outside lights off.'

@@ -121,6 +121,9 @@ device_tracker:
      
 ios:
     
+zwave:
+  usb_path: /dev/ttyACM0
+
 # Includes
 
 group: !include groups.yaml
