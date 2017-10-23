@@ -1,0 +1,88 @@
+############################################################
+#
+# Home Assistant Mums Bedroom Automation Configuration
+#
+############################################################
+
+
+  # Adjuster for Mums Bedroom
+  - id: mums_bedroom_adjustment
+    alias: Bedroom Adjustment
+    trigger:
+     - platform: state
+       entity_id: input_number.mums_bedroom_bright
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.mums
+          brightness: '{{ states.input_number.mums_bedroom_bright.state | int }}'
+  - id: mums_bedroom_scene_b        
+    alias: Bedroom Scene B
+    trigger:
+     - platform: state
+       entity_id: input_select.scene_mums_bedroom
+       to: "Night"
+    action:
+      - service: scene.turn_on
+        entity_id: scene.mums_room_on
+  - id: mums_bedroom_scene_ni
+    alias: Bedroom Scene Ni
+    trigger:
+     - platform: state
+       entity_id: input_select.scene_mums_bedroom
+       to: "NightM"
+    action:
+      - service: scene.turn_on
+        entity_id: scene.mums_room_night
+        data:
+          transition: 120
+
+  # Mums Bedroom Automated
+  - id: mums_bedroom_on
+    alias: Mums Lights on at 6PM
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: time
+      at: '17:45:00'
+    condition:
+      - condition: state
+        entity_id: input_select.presence
+        state: 'Home'
+    action:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "Mums"
+          scene_name: "NightM"
+      - service: notify.ios_ng_iphone
+        data:
+          message: 'Mums light is on.'
+  - id: mums_light_night
+    alias: Mums Lights night at 10PM
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: time
+      at: '22:00:00'
+    condition:
+      - condition: state
+        entity_id: input_select.presence
+        state: 'Home'
+    action:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "Mums"
+          scene_name: "Night"
+      - service: notify.ios_ng_iphone
+        data:
+          message: 'Mums light is now dark.'
+  - id:  mums_bedroom_off
+    alias: Turn Mums Bedroom off at 8am
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: time
+      at: '8:00:00' 
+    action:
+      - service: light.turn_off
+        entity_id: light.mums

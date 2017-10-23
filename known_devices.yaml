@@ -1,0 +1,17 @@
+18f643972c61:
+  hide_if_away: false
+  icon:
+  mac: !secret iphone_mac
+  name: NG iPhone
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+ng_iphone:
+  hide_if_away: false
+  icon:
+  mac: !secret iphone_mac
+  name: NG iPhone
+  picture:
+  track: true
+  vendor: Apple, Inc.

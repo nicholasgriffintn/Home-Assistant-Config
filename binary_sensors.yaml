@@ -1,0 +1,26 @@
+  - platform: template
+    sensors:
+    
+      keyfob_battery_low:
+        value_template: '{{ states.zwave.devolo_home_control_remote_mt_2653.attributes.battery_level < 15 }}'
+        friendly_name: 'Keyfob battery is low'
+
+      scene_switch_battery_low:
+        value_template: '{{ states.zwave.devolo_home_control_scene_switch_mt_2652.attributes.battery_level < 15 }}'
+        friendly_name: 'Scene Switch battery is low'
+
+      backdoor_sensor_battery_low:
+        value_template: '{{ states.zwave.doorwindows_sensor.attributes.battery_level < 15 }}'
+        friendly_name: 'Back Door Sensor battery is low'
+
+      frontdoor_sensor_battery_low:
+        value_template: '{{ states.zwave.sensative_strips.attributes.battery_level < 15 }}'
+        friendly_name: 'Front Door Sensor battery is low'
+
+      b_humidity_battery_low:
+        value_template: '{{ states.zwave.humidity_sensor.attributes.battery_level < 15 }}'
+        friendly_name: 'Bedroom Humidity Sensor battery is low'
+
+      b_motion_battery_low:
+        value_template: '{{ states.zwave.motion_detector.attributes.battery_level < 15 }}'
+        friendly_name: 'Bedroom Motion Sensor battery is low'

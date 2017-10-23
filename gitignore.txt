@@ -1,6 +1,16 @@
 secrets.yaml
 *.log
 *.db
+*.xml
+*.sqlite
 **/SSL
 **/deps
 **/tts
+**/homebridge
+**/hadaemon
+OZW_Log.txt
+ip_bans.yaml
+emulated_hue_ids.json
+.DS_Store
+phue.conf
+plex.conf

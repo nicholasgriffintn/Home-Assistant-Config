@@ -1,0 +1,223 @@
+light.all_hue_lights:
+  hidden: true
+binary_sensor.sensative_strips_sensor:
+  friendly_name: Front Door
+  device_class: opening
+binary_sensor.doorwindows_sensor_sensor:
+  friendly_name: Back Door
+  device_class: opening
+binary_sensor.humidity_sensor_sensor:
+  friendly_name: Bedroom Humidity
+  device_class: moisture
+binary_sensor.motion_detector_sensor:
+  device_class: occupancy
+  friendly_name: Bedroom Motion
+  hidden: true
+sensor.captured_today_front_outside_camera:
+  friendly_name: Captured Today
+sensor.last_front_outside_camera:
+  friendly_name: Last Capture
+media_player.living_room_ue40h6200:
+  friendly_name: Living Room TV
+sensor.speedtest_download:
+  friendly_name: Download
+sensor.speedtest_ping:
+  friendly_name: Ping
+sensor.speedtest_upload:
+  friendly_name: Upload
+group.light_bulb_group:
+  hidden: true
+group.strip_group:
+  hidden: true
+light.bedroom:
+  hidden: true
+light.ceiling_light:
+  friendly_name: Bedroom Ceiling Light
+  homebridge_name: Bedroom Light
+  icon: mdi:ceiling-light
+light.custom_group_for_group:
+  hidden: true
+light.girls:
+  friendly_name: Girls Ceiling Light
+light.girls_bedroom:
+  hidden: true
+light.girls_2:
+  hidden: true
+light.mums_2:
+  hidden: true
+light.mums:
+  friendly_name: Mum's Light
+light.hallway:
+  hidden: true
+light.lightstrip:
+  friendly_name: Hallway Lightstrip
+light.mums_bedroom:
+  hidden: true
+script.bedroom_concentrate:
+  friendly_name: Trigger Concentrate
+  icon: mdi:ceiling-light
+script.bedroom_energize:
+  friendly_name: Trigger Energize
+  icon: mdi:ceiling-light
+script.girls_bedroom_bright:
+  friendly_name: Trigger Bright
+  homebridge_hidden: true
+  homebridge_name: Girls Bright
+  icon: mdi:ceiling-light
+script.girls_bedroom_nightlight:
+  friendly_name: Trigger Nightlight
+  homebridge_name: Girl's Night
+  icon: mdi:theme-light-dark
+script.hallway_colorloop:
+  friendly_name: Trigger Colourloop
+  homebridge_name: Colourloop
+  icon: mdi:lightbulb-on
+sensor.weather_temperature:
+  friendly_name: Temperature
+sensor.weather_apparent_temperature:
+  friendly_name: It Feels Like
+sensor.weather_daily_high_temperature:
+  friendly_name: Max Temperature
+sensor.weather_daily_low_temperature:
+  friendly_name: Min Temperature
+sensor.weather_daily_summary:
+  friendly_name: Weekly Forecast
+sensor.weather_humidity:
+  friendly_name: Humidity
+sensor.weather_minutely_summary:
+  friendly_name: Hourly Forecast
+sensor.weather_precip_intensity:
+  friendly_name: Rain Amount
+sensor.weather_wind_speed:
+  friendly_name: Wind Speed
+sensor.bst:
+  friendly_name: Is it BST?
+automation.bedroom_adjustment_3:
+  hidden: true
+automation.bedroom_adjustment:
+  hidden: true
+automation.bedroom_adjustment_2:
+  hidden: true
+automation.bedroom_scene_b_2:
+  hidden: true
+automation.bedroom_scene_b_3:
+  hidden: true
+automation.bedroom_scene_b:
+  hidden: true
+automation.bedroom_scene_c:
+  hidden: true
+automation.bedroom_scene_d:
+  hidden: true
+automation.bedroom_scene_e:
+  hidden: true
+automation.bedroom_scene_n:
+  hidden: true
+automation.bedroom_scene_ni:
+  hidden: true
+automation.bedroom_scene_ni_3:
+  hidden: true
+automation.bedroom_scene_ni_2:
+  hidden: true
+automation.bedroom_scene_r:
+  hidden: true
+automation.bedroom_scene_re:
+  hidden: true
+automation.below_freezing_notification:
+  hidden: true
+automation.house_mode_automated_evening:
+  hidden: true
+automation.house_mode_automated_midday:
+  hidden: true
+automation.house_mode_automated_morning:
+  hidden: true
+automation.house_mode_automated_night:
+  hidden: true
+automation.it_is_bst:
+  hidden: true
+automation.it_is_not_bst:
+  hidden: true
+automation.cpu_use_above_80:
+  hidden: true
+sensor.devolo_home_control_metering_plug_mt02646_alarm_level:
+  hidden: true
+sensor.cpu_use:
+  hidden: true
+sensor.danfoss_rs_room_sensor_temperature:
+  friendly_name: Window Temp
+  hidden: true
+sensor.disk_use_:
+  hidden: true
+sensor.doorwindows_sensor_access_control:
+  hidden: true
+sensor.doorwindows_sensor_alarm_level:
+  hidden: true
+sensor.doorwindows_sensor_alarm_type:
+  hidden: true
+sensor.doorwindows_sensor_luminance:
+  friendly_name: Kitchen Luminance
+sensor.doorwindows_sensor_sourcenodeid:
+  hidden: true
+sensor.doorwindows_sensor_temperature:
+  friendly_name: Kitchen Temperature
+script.dyson_fan_on:
+  hidden: true
+  homebridge_hidden: true
+automation.hass_startup_notification: {}
+sensor.humidity_sensor_alarm_level:
+  hidden: true
+sensor.humidity_sensor_alarm_type:
+  hidden: true
+sensor.humidity_sensor_burglar:
+  hidden: true
+sensor.humidity_sensor_relative_humidity:
+  friendly_name: Bedroom Humidity
+sensor.humidity_sensor_sourcenodeid:
+  hidden: true
+sensor.humidity_sensor_temperature:
+  friendly_name: Bedroom Temperature
+sensor.motion_detector_alarm_level:
+  hidden: true
+sensor.motion_detector_alarm_type:
+  hidden: true
+sensor.motion_detector_burglar:
+  hidden: true
+sensor.motion_detector_luminance:
+  friendly_name: Bedroom Luminance
+sensor.motion_detector_sourcenodeid:
+  hidden: true
+sensor.motion_detector_temperature:
+  friendly_name: Bedroom Temperature
+sensor.sensative_strips_access_control:
+  hidden: true
+sensor.sensative_strips_alarm_level:
+  hidden: true
+sensor.sensative_strips_alarm_type:
+  hidden: true
+sensor.sensative_strips_burglar:
+  hidden: true
+sensor.sensative_strips_sourcenodeid:
+  hidden: true
+automation.ng_remote_switch_1:
+  hidden: true
+automation.ng_remote_switch_2:
+  hidden: true
+automation.ng_remote_switch_3:
+  hidden: true
+automation.ng_remote_switch_4:
+  hidden: true
+automation.outside_light_switch_1:
+  hidden: true
+automation.outside_light_switch_2:
+  hidden: true
+automation.outside_light_switch_3:
+  hidden: true
+automation.outside_light_switch_4:
+  hidden: true
+script.bedroom_loop:
+  homebridge_name: Bedroom Loop
+script.evening_on:
+  homebridge_name: Evening Scene
+script.mums_on:
+  homebridge_hidden: true
+switch.outside_light:
+  homebridge_hidden: true

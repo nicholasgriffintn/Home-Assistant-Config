@@ -1,0 +1,54 @@
+############################################################
+#
+# Home Assistant Alerts Configuration
+#
+############################################################
+  
+  - danfoss_room_sensor_battery:
+      name: Danfoss Room Sensor battery is low
+      entity_id: binary_sensor.danfoss_room_sensor_battery_low
+      repeat: 30
+      notifiers:
+        - ios_ng_iphone
+      
+  - keyfob_battery:
+      name: Keyfob battery is low
+      entity_id: binary_sensor.keyfob_battery_low
+      repeat: 30
+      notifiers:
+        - ios_ng_iphone
+      
+  - scene_switch_battery:
+      name: Scene Switch battery is low
+      entity_id: binary_sensor.scene_switch_battery_low
+      repeat: 30
+      notifiers:
+        - ios_ng_iphone
+
+  - backdoor_battery:
+      name: Backdoor sensor battery is low
+      entity_id: binary_sensor.backdoor_sensor_battery_low
+      repeat: 30
+      notifiers:
+        - ios_ng_iphone
+      
+  - frontdoor_battery:
+      name: Frontdoor sensor battery is low
+      entity_id: binary_sensor.frontdoor_sensor_battery_low
+      repeat: 30
+      notifiers:
+        - ios_ng_iphone
+
+  - b_humidity_battery:
+      name: Bedroom Humidity Sensor battery is low
+      entity_id: binary_sensor.b_humidity_battery_low
+      repeat: 30
+      notifiers:
+        - ios_ng_iphone
+      
+  - b_motion_battery:
+      name: Bedroom Motion Sensor battery is low
+      entity_id: binary_sensor.b_motion_battery_low
+      repeat: 30
+      notifiers:
+        - ios_ng_iphone

@@ -1,0 +1,46 @@
+############################################################
+#
+# Home Assistant System Automation Configuration
+#
+############################################################
+
+  # System Automation
+  - id: hass_startup_notify
+    alias: HASS Startup Notification
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      - service: notify.ios_ng_iphone
+        data:
+          message: 'Home Assistant started'
+  - id: disk_space_notify        
+    alias: System Disk Space 90%
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.disk_used_
+      above: 89
+    action:
+      service: notify.ios_ng_iphone
+      data:
+        message: 'Raspberry Pi Server disk usage is at {{ states.sensor.disk_used_.state }}%'
+  - id: cpu_use_notify    
+    alias: CPU use above 80%
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.cpu_used
+      above: 79
+    action:
+      service: notify.ios_ng_iphone
+      data:
+        message: 'Raspberry Pi Server cpu usage is at {{ states.sensor.cpu_used.state }}%'
+  - id: ram_use_notify    
+    alias: RAM getting low
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.ram_available
+      below: 200
+    action:
+      service: notify.ios_ng_iphone
+      data:
+        message: 'Raspberry Pi Server free RAM is at {{ states.sensor.ram_available.state }}%'

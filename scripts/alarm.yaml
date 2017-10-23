@@ -1,0 +1,15 @@
+############################################################
+#
+# Home Assistant Alarm Script Configuration
+#
+############################################################
+
+  alarm_triggered:
+    alias: Alarm Triggered
+    sequence:
+    - service: light.turn_on
+      entity_id: light.all_hue_lights
+    - service: scene.turn_on
+      entity_id: scene.alarm_triggered_lightstrip
+    - service: script.turn_on
+      entity_id: script.bedroom_alarm

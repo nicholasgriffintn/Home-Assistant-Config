@@ -1,0 +1,18 @@
+############################################################
+#
+# Home Assistant Night Night Script Configuration
+#
+############################################################
+
+  night_night:
+    sequence:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "Girls"
+          scene_name: "Nightlight"
+      - service: light.turn_off
+        data:
+          entity_id: light.lightstrip
+      - service: switch.turn_off
+        data:
+          entity_id: switch.outside_light

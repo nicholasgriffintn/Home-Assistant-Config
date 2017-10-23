@@ -1,0 +1,18 @@
+############################################################
+#
+# Home Assistant Girls Bedroom Script Configuration
+#
+############################################################
+
+  girls_bedroom_bright:
+    sequence:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "Girls"
+          scene_name: "Bright"
+  girls_bedroom_nightlight:
+    sequence:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "Girls"
+          scene_name: "Nightlight"

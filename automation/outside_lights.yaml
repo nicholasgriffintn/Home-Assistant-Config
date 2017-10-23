@@ -1,0 +1,72 @@
+############################################################
+#
+# Home Assistant Outside Lights Automation Configuration
+#
+############################################################
+
+  - id: gmt_lights_on_outside
+    alias: Outside lights on at 8PM BST
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: time
+      at: '20:00:00'
+    condition:
+      condition: and
+      conditions:
+      - condition: state
+        entity_id: input_select.presence
+        state: 'Home'
+      - condition: state
+        entity_id: sensor.bst
+        state: 'True'
+    action:
+      service: switch.turn_on
+      entity_id: switch.outside_light
+  - id: bst_lights_on_outside
+    alias: Outside lights on at 6:30 BST
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: time
+      at: '18:30:00'
+    condition:
+      condition: and
+      conditions:
+      - condition: state
+        entity_id: input_select.presence
+        state: 'Home'
+      - condition: state
+        entity_id: sensor.bst
+        state: 'False'
+    action:
+      service: switch.turn_on
+      entity_id: switch.outside_light
+  - id: lights_outside_off
+    alias: Turn Outside Lights Off at 10pm
+    initial_state: true
+    hide_entity: false
+    trigger:
+      platform: state
+      entity_id: binary_sensor.doorwindows_sensor_sensor
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+    condition:
+      condition: and
+      conditions:
+      - condition: state
+        entity_id: input_select.presence
+        state: 'Home'
+      - condition: state
+        entity_id: switch.outside_light
+        state: 'on'
+      - condition: time
+        after: '22:00:00'
+        before: '4:00:00'
+    action:
+      service: switch.turn_off
+      entity_id: switch.outside_light

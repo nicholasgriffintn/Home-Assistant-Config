@@ -1,0 +1,14 @@
+############################################################
+#
+# Home Assistant Hallway Script Configuration
+#
+############################################################
+
+  hallway_colorloop:
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.lightstrip
+          effect: colorloop
+          brightness: 214
+          transition: 3

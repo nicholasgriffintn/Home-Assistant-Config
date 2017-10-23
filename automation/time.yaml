@@ -1,0 +1,28 @@
+############################################################
+#
+# Home Assistant BST vs GMT Automation Configuration
+#
+############################################################
+
+  - id: bst_notify
+    alias: It is BST
+    trigger:
+      platform: state
+      entity_id: sensor.bst
+      from: 'off'
+      to: 'on'
+    action:
+      service: notify.ios_ng_iphone
+      data:
+        message: 'It is British Summer Time!'
+  - id: not_bst_notify        
+    alias: It is not BST
+    trigger:
+      platform: state
+      entity_id: sensor.bst
+      from: 'on'
+      to: 'off'
+    action:
+      service: notify.ios_ng_iphone
+      data:
+        message: 'It is no longer British Summer Time!'

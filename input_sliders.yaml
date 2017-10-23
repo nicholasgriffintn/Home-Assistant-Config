@@ -31,3 +31,17 @@
     max: 254
     step: 10
     icon: mdi:white-balance-sunny
+  lights_automated_time_hour:
+    name: LAT Hour
+    icon: mdi:timer
+    initial: 6
+    min: 0
+    max: 23
+    step: 1
+  lights_automated_time_minutes:
+    name: LAT Minutes
+    icon: mdi:timer
+    initial: 05
+    min: 0
+    max: 59
+    step: 5

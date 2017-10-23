@@ -10,30 +10,42 @@ home_view:
   entities:
   - group.home
   - group.cameras
-  - group.security
+  - group.security_cameras
+  - group.security_doors
   - group.nicksbedroom
   - group.nicksbedroom_controls
   - group.hallway
   - group.girlsbedroom
   - group.mumsbedroom
   - group.outside
-  - group.media
   - group.weather
   name: home_view
-light_view:
+media:
   view: true
-  icon: mdi:ceiling-light
+  name: Media
+  icon: mdi:airplay
+  entities:
+  - media_player.living_room_tv
+  - media_player.living_room_ue40h6200
+  - media_player.plex_0rpscn7mosocmrazm8sccc5v
+  - media_player.plex_6bc124dc_7af8_4e6a_90b7_05bc87ce3dbd
+  - media_player.ngtvbedroom
+room_view:
+  view: true
+  icon: mdi:hotel
   entities:
   - group.hallway
   - group.girlsbedroom
   - group.mumsbedroom
   - group.nicksbedroom
+  - group.nicksbedroom_controls
   - group.outside
   name: light_view
 settings_view:
   view: true
   icon: mdi:settings
   entities:
+  - group.time_settings
   - group.server
   - group.scripts
   - group.light_automations
@@ -46,6 +58,7 @@ zwave_view:
   entities:
   - group.zwave
   - group.zwave_sensitive
+  - group.zwave_devolo
 home:
   name: Home
   icon: mdi:home
@@ -60,27 +73,33 @@ cameras:
   icon: mdi:file-video
   entities:
   - camera.front_outside_camera
-security:
-  name: Security
+security_cameras:
+  name: Security Cameras
   icon: mdi:lock
   entities:
-  - sensor.door_1
+  - alarm_control_panel.arlo_home_hub
   - sensor.last_front_outside_camera
   - sensor.captured_today_front_outside_camera
   - sensor.arlo_cameras
+  - sensor.battery_level_front_outside_camera
+security_doors:
+  name: Security Doors
+  icon: mdi:lock
+  entities:
+  - sensor.door_1
+  - binary_sensor.doorwindows_sensor_sensor
 weather:
   name: Weather
   icon: mdi:amazon-clouddrive
   entities:
-  - sensor.weather_minutely_summary
-  - sensor.weather_temperature
-  - sensor.weather_apparent_temperature
-  - sensor.weather_humidity
-  - sensor.weather_precip_intensity
-  - sensor.weather_wind_speed
-  - sensor.weather_daily_high_temperature
-  - sensor.weather_daily_low_temperature
-  - sensor.weather_daily_summary
+  - sensor.pws_weather
+  - sensor.pws_weather_1h
+  - sensor.pws_weather_2n
+  - sensor.pws_temp_f
+  - sensor.pws_feelslike_f
+  - sensor.pws_heat_index_f
+  - sensor.pws_dewpoint_f
+  - sensor.pws_alerts
   - sun.sun
 hallway:
   name: Hallway
@@ -88,55 +107,100 @@ hallway:
   entities:
   - light.lightstrip
   - script.hallway_colorloop
+  - sensor.doorwindows_sensor_luminance
+  - sensor.doorwindows_sensor_temperature
 outside:
   name: Outside
   icon: mdi:tree
   entities:
   - switch.outside_light
+  - switch.devolo_home_control_metering_plug_mt02646_switch
+  - sensor.devolo_home_control_metering_plug_mt02646_alarm_level
+  - sensor.devolo_home_control_metering_plug_mt02646_alarm_type
+  - sensor.devolo_home_control_metering_plug_mt02646_current
+  - sensor.devolo_home_control_metering_plug_mt02646_energy
+  - sensor.devolo_home_control_metering_plug_mt02646_exporting
+  - sensor.devolo_home_control_metering_plug_mt02646_interval
+  - sensor.devolo_home_control_metering_plug_mt02646_power
+  - sensor.devolo_home_control_metering_plug_mt02646_power_factor
+  - sensor.devolo_home_control_metering_plug_mt02646_previous_reading
+  - sensor.devolo_home_control_metering_plug_mt02646_voltage
 girlsbedroom:
   name: Girl's Bedroom
   icon: mdi:hotel
   entities:
   - light.girls
   - input_select.scene_girls_bedroom
-  - input_slider.girls_bedroom_bright
+  - input_number.girls_bedroom_bright
+  - switch.girls_plug_switch
+  - sensor.girls_plug_current
+  - sensor.girls_plug_power
+  - sensor.girls_plug_voltage
+  - sensor.girls_plug_previous_reading
+  - sensor.girls_plug_power_factor
+  - sensor.girls_plug_interval
+  - sensor.girls_plug_exporting
+  - sensor.girls_plug_energy
+  - sensor.girls_plug_alarm_type
+  - sensor.girls_plug_alarm_level
 mumsbedroom:
   name: Mum's Bedroom
   icon: mdi:hotel
   entities:
   - light.mums
   - input_select.scene_mums_bedroom
-  - input_slider.mums_bedroom_bright
+  - input_number.mums_bedroom_bright
 nicksbedroom:
   name: Nick's Bedroom
   icon: mdi:hotel
   entities:
   - light.ceiling_light
+  - light.bedroomstrip
   - script.bedroom_energize
   - script.bedroom_concentrate
   - input_select.scene_bedroom
-  - input_slider.bedroom_bright
-  - input_slider.bedroom_temp
-nicksbedroom_controls:
-  name: Nick's Bedroom Controls
-  icon: mdi:remote
-  entities:
+  - input_number.bedroom_bright
+  - input_number.bedroom_temp
+  - history_graph.bedroom_temp_and_humidity
+  - sensor.danfoss_rs_room_sensor_temperature
+  - binary_sensor.humidity_sensor_sensor
+  - sensor.humidity_sensor_relative_humidity
+  - sensor.humidity_sensor_temperature
+  - binary_sensor.motion_detector_sensor
+  - sensor.motion_detector_luminance
+  - sensor.motion_detector_temperature
   - switch.bedroom_tv
+  - script.dyson_fan_on
   - switch.dyson_fan
-media:
-  name: Media
-  icon: mdi:airplay
-  entities:
-  - media_player.living_room_tv
-  - media_player.living_room_ue40h6200
-  - media_player.plex_0rpscn7mosocmrazm8sccc5v
-  - media_player.plex_6bc124dc_7af8_4e6a_90b7_05bc87ce3dbd
-  - media_player.ngtvbedroom
 zwave:
   name: ZWave
   icon: mdi:signal-variant
   entities:
   - zwave.zwaveme_zme_uzb1_usb_stick
+zwave_devolo:
+  name: ZWave Devolo
+  icon: mdi:signal-variant
+  entities:
+  - zwave.devolo_home_control_scene_switch_mt_2652
+  - zwave.doorwindows_sensor
+  - sensor.doorwindows_sensor_access_control
+  - sensor.doorwindows_sensor_alarm_level
+  - sensor.doorwindows_sensor_alarm_type
+  - sensor.doorwindows_sensor_sourcenodeid
+  - zwave.humidity_sensor
+  - sensor.humidity_sensor_alarm_level
+  - sensor.humidity_sensor_alarm_type
+  - sensor.humidity_sensor_burglar
+  - sensor.humidity_sensor_sourcenodeid
+  - zwave.motion_detector
+  - sensor.motion_detector_alarm_level
+  - sensor.motion_detector_alarm_type
+  - sensor.motion_detector_burglar
+  - sensor.motion_detector_sourcenodeid
+  - zwave.danfoss_rs_room_sensor
+  - zwave.devolo_home_control_metering_plug_mt02646
+  - zwave.devolo_home_control_remote_mt_2653
+  - zwave.girls_plug
 zwave_sensitive:
   name: ZWave Sensitive
   icon: mdi:signal-variant
@@ -152,9 +216,11 @@ server:
   name: Server
   icon: mdi:home
   entities:
-  - sensor.cpu_use
-  - sensor.disk_use_
-  - sensor.ram_free
+  - history_graph.server
+  - sensor.uptime
+  - sensor.cpu_used
+  - sensor.disk_used_
+  - sensor.ram_available
   - sensor.speedtest_download
   - sensor.speedtest_ping
   - sensor.speedtest_upload
@@ -177,6 +243,7 @@ strip_group:
   icon: mdi:bulb
   entities:
   - light.lightstrip
+  - light.bedroomstrip
 scenes:
   name: Scenes
   icon: mdi:format-paint
@@ -211,6 +278,7 @@ scripts:
   - script.hallway_colorloop
   - script.evening_on
   - script.mums_on
+  - script.bedroom_loop
 house_automations:
   name: House Automations
   icon: mdi:robot
@@ -219,13 +287,15 @@ house_automations:
   - automation.house_mode_automated_midday
   - automation.house_mode_automated_morning
   - automation.house_mode_automated_night
+  - automation.dyson_fan_on_above_22c
+  - automation.dyson_fan_off_below_21c
 light_automations:
   name: Light Automations
   icon: mdi:robot
   entities:
   - automation.all_light_bulbs_sunset
   - automation.lights_on_1hr_before_sunset_gmt
-  - automation.lights_on_at_530_bst
+  - automation.lights_on_at_605_bst
   - automation.mums_lights_on_at_6pm
   - automation.turn_bedroom_lights_even_lower_at_1100pm
   - automation.turn_bedroom_lights_lower_at_950pm
@@ -233,6 +303,13 @@ light_automations:
   - automation.turn_girls_bedroom_off_at_10pm
   - automation.turn_mums_bedroom_off_at_8am
   - automation.mums_lights_night_at_10pm
+  - automation.outside_lights_on_at_630_bst
+  - automation.outside_lights_on_at_8pm_bst
+  - automation.turn_outside_lights_off_at_10pm
+  - automation.outside_light_switch_1
+  - automation.outside_light_switch_2
+  - automation.outside_light_switch_3
+  - automation.outside_light_switch_4
 time_automations:
   name: Time Automations
   icon: mdi:robot
@@ -252,3 +329,9 @@ system_automations:
   - automation.ram_getting_low
   - automation.system_disk_space_90
   - automation.hass_startup_notification
+time_settings:
+  view: false
+  icon: mdi:settings
+  entities:
+  - input_number.lights_automated_time_hour
+  - input_number.lights_automated_time_minutes

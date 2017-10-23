@@ -1,0 +1,18 @@
+############################################################
+#
+# Home Assistant Script Configuration
+#
+############################################################
+
+  mums_on:
+     sequence:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "Mums"
+          scene_name: "NightM"
+  mums_night:
+     sequence:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "Mums"
+          scene_name: "Night"

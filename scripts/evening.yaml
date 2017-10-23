@@ -1,0 +1,16 @@
+############################################################
+#
+# Home Assistant Evening Script Configuration
+#
+############################################################
+
+  evening_on:
+     sequence:
+      - service: light.hue_activate_scene
+        data:
+          group_name: "Bedroom"
+          scene_name: "Concentrate"
+      - service: light.hue_activate_scene
+        data:
+          group_name: "Girls"
+          scene_name: "Bright"

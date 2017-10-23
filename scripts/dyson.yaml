@@ -1,0 +1,15 @@
+############################################################
+#
+# Home Assistant Dyson Fan Script Configuration
+#
+############################################################
+
+  dyson_fan_on:
+    alias: Dyson Fan Power
+    sequence:
+      - delay:
+          milliseconds: 400
+      - service: broadlink.send_packet_10_0_0_19
+        data:
+          packet: 
+            - "JgBIAEsWGxcaFRssGiwaFxYYGxUbFhsXFxkaFhsVGxUbKxorGwAMrUkZGBkXGRgtGS0ZGBgYGBgXGhgZFxkYGRcZFxkXLRksGQANBQ=="

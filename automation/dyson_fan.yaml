@@ -1,0 +1,32 @@
+############################################################
+#
+# Home Assistant Dyson Fan Automation Configuration
+#
+############################################################
+
+  - id: auto_dyson_fan
+    alias: Dyson Fan on above 22C
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.humidity_sensor_temperature
+      above: 22
+    condition:
+    - condition: state
+      entity_id: input_select.presence
+      state: 'Home'
+    action:
+    - service: script.turn_on
+      entity_id: script.dyson_fan_on
+  - id: auto_dyson_fan_off
+    alias: Dyson Fan off below 21C
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.weather_apparent_temperature
+      below: 21.9
+    condition:
+    - condition: state
+      entity_id: input_select.presence
+      state: 'Home'
+    action:
+    - service: script.turn_on
+      entity_id: script.dyson_fan_on

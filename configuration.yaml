@@ -11,25 +11,28 @@ homeassistant:
   elevation: !secret elevation
   unit_system: metric
   time_zone: Europe/London
-  customize: !include customise.yaml
+  customize: !include customize.yaml
 
 http:
-  #base_url: !secret base_url
+  base_url: !secret base_url
   api_password: !secret api_password
-  #ssl_certificate: /config/SSL/fullchain.pem
-  #ssl_key: /config/SSL/privkey.pem
-  # server_host: 
-  trusted_networks:
-    - 10.0.0.0/24
-  ip_ban_enabled: True
-  login_attempts_threshold: 3
-  cors_allowed_origins:
-  - https://google.com
-  - https://home-assistant.io
-  - https://api.ai
-  use_x_forwarded_for: True
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
   
+# Enablers
 config:
+recorder:
+  purge_interval: 2
+  purge_keep_days: 5
+  exclude:
+    domains:
+      - updater
+      - automation
+  entities:
+discovery:
+sun:
+frontend:
+conversation:
 logger:
   default: warn
   logs:
@@ -41,97 +44,204 @@ logger:
     homeassistant.components.scene: info
     homeassistant.components.switch: info
 history:
-recorder:
-  purge_days: 7
-discovery:
-sun:
-conversation:
+  include:
+    domains:
+      - sensor
+      - switch
+      - media_player
+      - light
+  exclude:
+    entities:
+      - sensor.time
+      - sensor.date
+      - media_player.living_room_tv
+      - media_player.living_room_ue40h6200
+      - media_player.plex_0rpscn7mosocmrazm8sccc5v
+      - media_player.plex_6bc124dc_7af8_4e6a_90b7_05bc87ce3dbd
+      - media_player.ngtvbedroom
+      - sensor.bst
+      - sensor.arlo_cameras
+      - scene.night_light_room
+      - scene.ready_for_sleep_room
+      - automation.bedroom_adjustment
+      - automation.bedroom_adjustment_2
+      - automation.bedroom_adjustment_3
+      - automation.bedroom_scene_b
+      - automation.bedroom_scene_b_2
+      - automation.bedroom_scene_b_3
+      - automation.bedroom_scene_c
+      - automation.bedroom_scene_d
+      - automation.bedroom_scene_e
+      - automation.bedroom_scene_n
+      - automation.bedroom_scene_ni
+      - automation.bedroom_scene_ni_2
+      - automation.bedroom_scene_ni_3
+      - automation.bedroom_scene_r
+      - automation.bedroom_scene_re
+      - scene.mums_room_on
+      - scene.mums_room_night
+      - automation.house_mode_automated_evening
+      - automation.house_mode_automated_midday
+      - automation.house_mode_automated_morning
+      - automation.house_mode_automated_night
+      - automation.all_light_bulbs_sunset
+      - automation.lights_on_1hr_before_sunset_gmt
+      - automation.lights_on_at_605_bst
+      - automation.mums_lights_on_at_6pm
+      - automation.turn_bedroom_lights_even_lower_at_1100pm
+      - automation.turn_bedroom_lights_lower_at_950pm
+      - automation.turn_bedroom_off_at_1am
+      - automation.turn_girls_bedroom_off_at_10pm
+      - automation.turn_mums_bedroom_off_at_8am
+      - automation.mums_lights_night_at_10pm
+      - automation.outside_lights_on_at_630_bst
+      - automation.outside_lights_on_at_8pm_bst
+      - automation.turn_outside_lights_off_at_10pm
+      - automation.outside_light_switch_1
+      - automation.outside_light_switch_2
+      - automation.outside_light_switch_3
+      - automation.outside_light_switch_4
+      - automation.it_is_bst
+      - automation.it_is_not_bst
+      - automation.below_freezing_notification
+      - automation.cpu_use_above_80
+      - automation.ram_getting_low
+      - automation.system_disk_space_90
+      - automation.hass_startup_notification
 logbook:
-frontend:
-
-emulated_hue:
-  host_ip: 10.0.0.5
-  expose_by_default: false
+  exclude:
+    entities:
+      - sensor.time
+      - sensor.date
+      - media_player.living_room_tv
+      - media_player.living_room_ue40h6200
+      - media_player.plex_0rpscn7mosocmrazm8sccc5v
+      - media_player.plex_6bc124dc_7af8_4e6a_90b7_05bc87ce3dbd
+      - media_player.ngtvbedroom
+      - sensor.bst
+      - sensor.arlo_cameras
+      - scene.night_light_room
+      - scene.ready_for_sleep_room
+      - automation.bedroom_adjustment
+      - automation.bedroom_adjustment_2
+      - automation.bedroom_adjustment_3
+      - automation.bedroom_scene_b
+      - automation.bedroom_scene_b_2
+      - automation.bedroom_scene_b_3
+      - automation.bedroom_scene_c
+      - automation.bedroom_scene_d
+      - automation.bedroom_scene_e
+      - automation.bedroom_scene_n
+      - automation.bedroom_scene_ni
+      - automation.bedroom_scene_ni_2
+      - automation.bedroom_scene_ni_3
+      - automation.bedroom_scene_r
+      - automation.bedroom_scene_re
+      - scene.mums_room_on
+      - scene.mums_room_night
+      - automation.house_mode_automated_evening
+      - automation.house_mode_automated_midday
+      - automation.house_mode_automated_morning
+      - automation.house_mode_automated_night
+      - automation.all_light_bulbs_sunset
+      - automation.lights_on_1hr_before_sunset_gmt
+      - automation.lights_on_at_605_bst
+      - automation.mums_lights_on_at_6pm
+      - automation.turn_bedroom_lights_even_lower_at_1100pm
+      - automation.turn_bedroom_lights_lower_at_950pm
+      - automation.turn_bedroom_off_at_1am
+      - automation.turn_girls_bedroom_off_at_10pm
+      - automation.turn_mums_bedroom_off_at_8am
+      - automation.mums_lights_night_at_10pm
+      - automation.outside_lights_on_at_630_bst
+      - automation.outside_lights_on_at_8pm_bst
+      - automation.turn_outside_lights_off_at_10pm
+      - automation.outside_light_switch_1
+      - automation.outside_light_switch_2
+      - automation.outside_light_switch_3
+      - automation.outside_light_switch_4
+      - automation.it_is_bst
+      - automation.it_is_not_bst
+      - automation.below_freezing_notification
+      - automation.cpu_use_above_80
+      - automation.ram_getting_low
+      - automation.system_disk_space_90
+      - automation.hass_startup_notification
 
 # Components
-
+alexa:
 media_player:
-  - platform: plex
-    entity_namespace: 'plex'
-    include_non_clients: true
-    scan_interval: 5
-    show_all_controls: true
-    use_custom_entity_ids: true
-    use_episode_art: true
   - platform: cast
-  - platform: samsungtv
-    host: 192.168.0.19
-    name: Living Room TV
-    mac: BC:14:85:A3:E4:26
-
+    scan_interval:  40
 arlo:
   username: !secret arlo_username
   password: !secret arlo_password
-
+alarm_control_panel:
+  - platform: arlo
+    home_mode_name: Armed Motion Outside
+    away_mode_name: Armed Motion Outside Away 
 light:
   - platform: hue
     host: 10.0.0.3
     allow_unreachable: true
-    
+  - platform: yeelight
+    devices:
+      10.0.0.23:
+        name: Bedroom-Strip
+        transition: 1000
+        use_music_mode: true 
 tts:
   - platform: google
     cache: true
     cache_dir: /tmp/tts
     time_memory: 300
-
 panel_iframe:
   router:
     title: 'Router'
     icon: mdi:router-wireless
-    url: 'http://10.0.0.1'
-    
-mqtt:
-  broker: m21.cloudmqtt.com
-  port: 14210
-  username: !secret mqtt_user
-  password: !secret mqtt_pass
-  client_id: home-assistant-mqtt
-  keepalive: 60
-
-device_tracker:
-  - platform: netgear
-    host: 10.0.0.1
-    username: !secret router_user
-    password: !secret router_password
-    interval_seconds: 30
-    consider_home: 180
-    track_new_devices: false
-    exclude:
-     - 192.168.1.12
-     - 192.168.1.18
-     - 192.168.1.10
-     - 192.168.1.20
-     - 192.168.1.2
-     - 192.168.1.5
-     - 192.168.1.9
-     - 192.168.1.8
-     - 192.168.1.3
-     - 192.168.1.66
-     - 192.168.1.19
-     
+    url: 'http://10.0.0.1' 
 ios:
-    
+history_graph:
+  weather_graph:
+    name: Weather
+    entities:
+      - sensor.weather_temperature
+      - sensor.weather_daily_high_temperature
+      - sensor.weather_daily_low_temperature
+    hours_to_show: 6
+    refresh: 1800
+  bedroom_temp_graph:
+    name: Bedroom Temp and Humidity
+    entities:
+      - sensor.danfoss_rs_room_sensor_temperature
+      - sensor.humidity_sensor_relative_humidity
+      - sensor.humidity_sensor_temperature
+      - sensor.motion_detector_luminance
+      - sensor.motion_detector_temperature
+    hours_to_show: 6
+    refresh: 100
+  server_graph:
+    name: Server
+    entities:
+      - sensor.cpu_used
+      - sensor.disk_used_
+      - sensor.ram_available
+    hours_to_show: 6
+    refresh: 100 
 zwave:
   usb_path: /dev/ttyACM0
 
 # Includes
 
 group: !include groups.yaml
-automation: !include automations.yaml
+automation: !include_dir_merge_list automation
 sensor: !include sensors.yaml
 scene: !include scenes.yaml
-script: !include scripts.yaml
+script: !include_dir_merge_list scripts
 camera: !include cameras.yaml
 switch: !include switches.yaml
 input_select: !include input_selects.yaml
-input_slider: !include input_sliders.yaml
+input_number: !include input_sliders.yaml
+intent_script: !include alexa.yaml
+# binary_sensor: !include binary_sensors.yaml
+# alert: !include alerts.yaml

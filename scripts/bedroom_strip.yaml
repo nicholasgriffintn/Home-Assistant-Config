@@ -1,0 +1,30 @@
+############################################################
+#
+# Home Assistant Bedroom Strip Script Configuration
+#
+############################################################
+
+  bedroom_loop:
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.bedroomstrip
+          effect: Slowdown
+          brightness: 10
+          transition: 900
+  bedroom_strip_twitter:
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.bedroomstrip
+          effect: Twitter
+          brightness: 45.9
+          transition: 900
+  bedroom_alarm:
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.bedroomstrip
+          effect: Alarm
+          brightness: 45.9
+          transition: 900

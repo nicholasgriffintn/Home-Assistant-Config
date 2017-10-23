@@ -1,0 +1,50 @@
+############################################################
+#
+# Home Assistant Automation House Mode Configuration
+#
+############################################################
+
+  - id: house_mode_automated_morning
+    alias: House Mode Automated Morning
+    trigger:
+      platform: time
+      at: '07:30:00'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.house_mode
+          option: Morning
+  - id: house_mode_automated_midday
+    alias: House Mode Automated Midday
+    trigger:
+      platform: time
+      at: '12:00:00'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.house_mode
+          option: Midday
+  - id: house_mode_automated_evening     
+    alias: House Mode Automated Evening
+    trigger:
+      platform: time
+      minutes: '/1'
+      seconds: 0
+    condition:
+      - condition: template
+        value_template: '{{ now().strftime("%H:%M") == states.sensor.automation_time.state }}'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.house_mode
+          option: Evening
+  - id: house_mode_automated_night        
+    alias: House Mode Automated Night
+    trigger:
+      platform: time
+      at: '22:00:00'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.house_mode
+          option: Night

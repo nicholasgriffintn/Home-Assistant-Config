@@ -1,0 +1,20 @@
+name: Dyson Remote
+image: /local/custom_ui/floorplan/dyson-fan-remote.svg
+stylesheet: /local/custom_ui/floorplan/floorplan.css
+#pan_zoom:
+hide_app_toolbar:
+date_format: DD-MMM-YYYY
+
+groups:
+
+  - name: Switches
+    entities:
+      - switch.dyson_fan
+    states:
+      - state: 'on'
+        class: 'doorbell-on'
+      - state: 'off'
+        class: 'doorbell-off'
+    action:
+      domain: switch
+      service: toggle

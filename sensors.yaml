@@ -4,7 +4,7 @@
 #
 ############################################################
 
-  # Time Date
+  - platform: uptime
   - platform: time_date
     display_options:
       - 'time'
@@ -14,14 +14,13 @@
     sensors:
       bst:
         value_template: '{{ now() < utcnow() }}'
-  # Arlo Sensor
   - platform: arlo
     name: Arlo
     monitored_conditions:
       - captured_today
       - last_capture
       - total_cameras
-  # Speed Test
+      - battery_level
   - platform: speedtest
     minute: 30
     hour:
@@ -33,43 +32,24 @@
       - ping
       - download
       - upload
-  # System Monitor
   - platform: systemmonitor
     resources:
       - type: processor_use
       - type: disk_use_percent
         arg: /
       - type: memory_free
-  # Dark Sky
-  - platform: darksky
-    name: weather
-    api_key: df4c8aa3f5f2ed501ed873bc57098a26
+  - platform: wunderground
+    api_key: !secret wu_api
+    pws_id: !secret wu_pws
     monitored_conditions:
-      #- summary
-      #- icon
-      #- nearest_storm_distance
-      #- nearest_storm_bearing
-      #- precip_type
-      - precip_intensity
-      #- precip_probability
-      - temperature
-      - apparent_temperature
-      #- dew_point
-      - wind_speed
-      #- wind_bearing
-      #- cloud_cover
-      - humidity
-      #- pressure
-      #- visibility
-      #- ozone
-      - minutely_summary
-      #- hourly_summary
-      - daily_summary
-      - temperature_max
-      - temperature_min
-      #- apparent_temperature_max
-      #- apparent_temperature_min
-      #- precip_intensity_max
+      - weather
+      - alerts
+      - weather_1h
+      - weather_2n
+      - dewpoint_f
+      - temp_f
+      - feelslike_f
+      - heat_index_f
   - platform: template
     sensors:
       door_1:
@@ -80,3 +60,6 @@
           {% else %}
           closed
           {% endif %}
+    automation_time:
+        friendly_name: 'LAT Time'
+        value_template: '{{ "%0.02d:%0.02d" | format(states("input_number.lights_automated_time_hour") | int, states("input_number.lights_automated_time_minutes") | int) }}'

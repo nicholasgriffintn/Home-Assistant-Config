@@ -4,6 +4,22 @@
 #
 ############################################################
 
+  binary_sensor.sensative_strips_sensor:
+    friendly_name: Front Door
+    device_class: opening
+
+  binary_sensor.doorwindows_sensor_sensor:
+    friendly_name: Back Door
+    device_class: opening
+
+  binary_sensor.humidity_sensor_sensor:
+    friendly_name: Bedroom Humidity
+    device_class: moisture
+  
+  binary_sensor.motion_detector_sensor:
+    friendly_name: Bedroom Motion
+    device_class: occupancy
+
   sensor.captured_today_front_outside_camera:
     friendly_name: Captured Today
   sensor.last_front_outside_camera:

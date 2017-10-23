@@ -1,0 +1,53 @@
+############################################################
+#
+# Home Assistant Alarm Automation Configuration
+#
+############################################################
+ 
+  # AWAY MODE
+  
+  - alias: 'Trigger alarm while armed away'
+    trigger:
+      platform: state
+      entity_id: group.security_doors
+      to: 'open'
+    condition:
+    - condition: state
+      entity_id: alarm_control_panel.arlo_home_hub
+      state: 'armed_away'
+    action:
+    - service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.arlo_home_hub
+
+  # Triggered Mode
+      
+  - alias: "Alarm triggered"
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.arlo_home_hub
+        to: 'triggered'
+    action:
+      - service: script.turn_on
+        entity_id: script.alarm_triggered
+      - service: tts.google_say
+        data:
+          message: 'The house alarm has been triggered and police have been notified.'
+  
+  #Disarmed Mode
+
+  - alias: Disarmed Off
+    trigger:
+      platform: state
+      entity_id: alarm_control_panel.arlo_home_hub
+      to: 'disarmed'
+    action:
+      - service: light.turn_off
+        entity_id: light.bedroomstrip
+      - service: light.turn_off
+        entity_id: light.lightstrip
+      - service: tts.google_say
+        data:
+          message: 'The house alarm has been disarmed.'
+      - service: notify.ios_ng_iphone
+        data:
+          message: 'Home Alarm Reset'
